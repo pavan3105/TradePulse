@@ -11,6 +11,7 @@ import InsertChartIcon from '@mui/icons-material/InsertChart';
 import BuySellModal from '../modals/BuySellModal';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../loading/Loading';
+import TradeDialog from "./TradeDialog";
 
 let BASE_URL = "http://localhost:5000/api";
 
@@ -38,6 +39,17 @@ function Watchlist() {
     const [loadingId, setLoadingId] = useState('');
 
     const navigate = useNavigate();
+    const [isTradeDialogOpen, setIsTradeDialogOpen] = useState(false);
+
+  // Open dialog handler
+  const openTradeDialog = () => {
+    setIsTradeDialogOpen(true);
+  };
+
+  // Close dialog handler
+  const closeTradeDialog = () => {
+    setIsTradeDialogOpen(false);
+  };
 
     const handleSearchStock = async () => {
 
@@ -264,6 +276,26 @@ function Watchlist() {
                                                                                 fontSize: '0.9rem'
                                                                             }} >S</Typography>
                                                                     </Stack>
+                                                                    <Stack
+                                                                        justifyContent="center"
+                                                                        alignItems="center"
+                                                                        sx={{
+                                                                            background: "#1976d2",
+                                                                            width: '22px',
+                                                                            height: '22px',
+                                                                            color: '#fff',
+                                                                            borderRadius: '2px',
+                                                                            cursor: 'pointer',
+                                                                            boxShadow: '0px 0px 3px 2px #bddfc3'
+                                                                        }} >
+                                                                        <Typography
+                                                                            onClick={() => openTradeDialog()}
+                                                                            sx={{
+                                                                                fontSize: '0.9rem'
+                                                                            }} >One</Typography>
+                                                                            <TradeDialog open={isTradeDialogOpen} onClose={closeTradeDialog} handleBuySellStock={handleBuySellStock}/>
+                                                                    </Stack>
+            
                                                                     <Stack sx={{
                                                                         background: "#fff",
                                                                         cursor: 'pointer',

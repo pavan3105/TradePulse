@@ -113,6 +113,7 @@ function TradingChart() {
     const getHistoricalScripData = async () => {
         try {
             setLoading(true);
+            console.log("*****************************************************");
             const response = await axios.get(
                 `${process.env.REACT_APP_BASE_URL}/historical/get?scrip=${scrip}&timeFrame=${timeFrame}&fromDate=${fromDate}&toDate=${toDate}`
             );

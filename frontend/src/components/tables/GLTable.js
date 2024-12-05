@@ -11,17 +11,17 @@ import Loading from '../loading/Loading';
 
 function createData(
     symbol,
-    open,
-    high,
-    low,
-    prevPrice,
-    ltp,
+    open = 100,   // Default to 100 if not available
+    high = 110,   // Default to 110 if not available
+    low = 90,     // Default to 90 if not available
+    prevPrice = 100, // Default to 100 if not available
+    ltp = 100,    // Default to 100 if not available
     perChange,
-    volume,
+    volume = 100000, // Default to 100000 if not available
     value
 ) {
-
-    value = value.toFixed(2);
+    // Ensure value is a number and fallback to 0 if undefined or null
+    value = (value || 0).toFixed(2);
 
     return {
         symbol,
@@ -35,7 +35,6 @@ function createData(
         value
     };
 }
-
 export default function GLTable({ type, refreshGL, setRefreshGL }) {
 
     const [tableData, setTableData] = useState([]);
@@ -46,12 +45,12 @@ export default function GLTable({ type, refreshGL, setRefreshGL }) {
             setLoading(true);
             const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/analysis/gl`);
             if (response.status === 200) {
-                const glResponseData = response.data;
+                const glResponseData = response.data; 
                 let glData;
                 if ( glResponseData.gainers && type === 'gainers')
-                    glData = glResponseData.gainers[0]['NIFTY'].data;
+                    glData = glResponseData.gainers;
                 if( glResponseData.losers && type === 'losers' )
-                    glData = glResponseData.losers[0]['NIFTY'].data;
+                    glData = glResponseData.losers;
 
                 glData = glData?.map((scrip) => {
                     return createData(

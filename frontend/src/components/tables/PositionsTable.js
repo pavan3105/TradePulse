@@ -17,7 +17,7 @@ function createData(posId, symbol, exchange, orderType, qty, avg, tradeType, lmT
   lmType = lmType.toUpperCase();
 
   return { posId, symbol, exchange, orderType, qty, avg, tradeType, lmType, ltp, pnl, posStatus };
-}
+} 
 
 export default function PositionsTable() {
 
@@ -34,7 +34,7 @@ export default function PositionsTable() {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/position/all?userId=${userId}`);
       if (response.status === 200) {
         let allPositions = [];
-        console.log('Positions: ', response.data.positions[0]?.buyOrderId?.scripId?.lastPrice);
+        //console.log('Positions: ', response.data.positions[0]?.buyOrderId?.scripId?.lastPrice);
         response.data?.positions?.map((position) => {
           allPositions.push(createData(
             position._id,

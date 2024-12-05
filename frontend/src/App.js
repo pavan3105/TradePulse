@@ -8,6 +8,7 @@ import {
 import Home from "./pages/home/Home";
 import Header from "./components/header/Header";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Preset from "./pages/preset/Preset";
 import Orders from "./pages/orders/Orders";
 import Positions from "./pages/positions/Positions";
 import Account from "./pages/account/Account";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/positions" element={<Positions />} />
             <Route path="/account" element={<Account />} />
             <Route path="/tools" element={<Tools />} />
+            <Route path="/preset" element={<Preset />} />
             <Route path="/chart" element={<TradingChart />} />
           </Route>
           <Route path="/signup" element={<Signup />} />
